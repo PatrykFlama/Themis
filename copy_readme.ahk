@@ -20,6 +20,10 @@ Copy(){
 	Send, ^c
 }
 
+SelAll(){
+	Send, ^a
+}
+
 Paste(){
 	Send, ^v
 }
@@ -33,12 +37,14 @@ Save(){
 }
 
 Sleep, 3000
-Loop 6 {
+Loop 10 {
 	SelectCode()
 	Copy()
 	CloseCard()
 	SwitchToEditor()
 	Sleep, 50
+	SelAll()
+	Sleep, 30
 	Paste()
 	Sleep, 50
 	Save()
