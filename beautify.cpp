@@ -111,7 +111,7 @@ void beautify(string filename){
 
 
 int main(){
-    ifstream fin("temp.txt");
+    ifstream fin("names.txt");
     string filename;
     while(fin >> filename){
         beautify(filename);
