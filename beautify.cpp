@@ -28,26 +28,30 @@ bool contains(const vector<wstring> strs, const wstring s) {            //? find
 }
 
 void beautify(string filename){
+    const int MAX_HL_LEN = 20;
+    const int MIN_HL_LEN = 5;
     const wstring codeblock_separator = L"```";
-    const vector<wstring> wide4 = {L"Wejście", L"Wyjście", L"Przykład", L"Przykłady",
-                                   L"Wej", L"Wyj", L"Przyk"};
+    const vector<wstring> headline = {L"Wejście", L"Wyjście", L"Przykład", L"Przykłady",
+                                      L"Wej", L"Wyj", L"Przyk"};
     const vector<wstring> codeblock = {L"danych", L"wyjścia", L"wejścia", L"wejściowych", L"wyjściowych", L"przykład", L"przykłady",
                                        L"odpowiedzią", L"poprawną", L"poprawne", L"poprawnym", L"poprawnymi", L"poprawna", L"poprawny",
-                                       L"danych", L"wej", L"wyj", L"przyk", L"odpowied", L"poprawn"};
+                                       L"danych", L"wej", L"wyj", L"przyk", L"odpowied", L"poprawn", L"Wynik", L"wynik", L"wypisa"};
+    const vector<wstring> end_codeblock = {L"Uzasadnienie", L"uzasadnienie", L"Wyjaśnienie", L"Wyja", L"wyja"};
 
     wifstream fin(filename + "/README.md");
     wofstream fout(filename + "/temp.md");
     wstring line;
     int line_num = 0;
     bool in_codeblock = false;
-    bool in_example = false;
+    int in_example = 0;
     bool codeblock_to_open = false;
 
     while(getline(fin, line)){
         line_num++;
         wstring newline = L"";
 
-        if(find(line, L"Przyk")) in_example = true;
+        if(in_example) in_example += 1;
+        if(find(line, L"Przyk")) in_example += 1;
         if(codeblock_to_open && !line.empty()){
             newline += codeblock_separator + L'\n';
             codeblock_to_open = false;
@@ -62,10 +66,14 @@ void beautify(string filename){
                 newline += line[i];
             }
         } 
-        else if(contains(wide4, line)){
+        else if(contains(headline, line) && line.length() <= MAX_HL_LEN){
             newline += L"#### " + line;
         }
-        else if(in_example && contains(codeblock, line)){
+        else if(in_example == 2 && line.length() < MIN_HL_LEN){
+            in_codeblock = true;
+            newline += codeblock_separator + L'\n' + line;
+        }
+        else if((in_example && contains(codeblock, line))){
             if(in_codeblock){
                 newline += codeblock_separator + L'\n';
                 newline += line;
@@ -75,6 +83,10 @@ void beautify(string filename){
                 newline += line;
                 codeblock_to_open = true;
             }
+        }
+        else if(in_example && contains(end_codeblock, line)){
+            newline += codeblock_separator + L'\n';
+            in_codeblock = false;
         }
         else {
             newline += line;
@@ -98,10 +110,11 @@ void beautify(string filename){
 
 
 int main(){
-    ifstream fin("temp.txt");
-    string filename;
-    while(fin >> filename){
-        beautify(filename);
-    }
-    fin.close();
+    // ifstream fin("temp.txt");
+    // string filename;
+    // while(fin >> filename){
+    //     beautify(filename);
+    // }
+    // fin.close();
+    beautify("MON2");
 }
