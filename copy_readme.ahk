@@ -39,6 +39,8 @@ Save(){
 Sleep, 3000
 Loop 10 {
 	SelectCode()
+	SelAll()
+	Sleep, 50
 	Copy()
 	CloseCard()
 	SwitchToEditor()
