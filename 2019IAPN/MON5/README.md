@@ -14,13 +14,17 @@ W ostatniej linii znajduje się kwota do wydania S (0 <= S <= 10000).
 W jedynej linijce wyjścia wypisz, ile złotych monet można co najwyżej użyć do wydania kwoty S lub słowo NIE, jeśli wydanie kwoty S nie jest możliwe. Uwaga: słowo NIE musi być napisane dużymi literami!
 
 #### Przykład:
+```
 3
 1 3 5
 2
 2 9
 11
+```
 Wynik:
+```
 5
+```
 można użyć 11 monet o nominale 1.
 Inny przykład:
 ```
@@ -29,6 +33,8 @@ Inny przykład:
 1
 6
 7
+```
 Wynik:
+```
 NIE
 ```

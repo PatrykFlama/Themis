@@ -10,17 +10,23 @@ W pierwszej linijce wejścia znajduje się liczba różnych nominałów n (1 <= 
 W jedynej linijce wyjścia wypisz, ile monet można co najwyżej użyć do wydania kwoty S lub słowo NIE, jeśli wydanie kwoty S nie jest możliwe. Uwaga: słowo NIE musi być napisane dużymi literami!
 
 #### Przykład:
+```
 3
 1 3 5
 11
+```
 Wynik:
+```
 11
+```
 można użyć 11 monet o nominale 1.
 Inny przykład:
 ```
 2
 3 5
 7
+```
 Wynik:
+```
 NIE
 ```

@@ -25,6 +25,6 @@ poprawną odpowiedzią jest
 ```
 1 4
 3 2
+```
 Uzasadnienie:
 W powyższej permutacji występują następujące cykle: (2 7 1) (4) (5) (9 6 3) (8) (10). Mamy więc 4 cykle 1-elementowe i 2 cykle 3-elementowe.
-```

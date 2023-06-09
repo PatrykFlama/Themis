@@ -20,5 +20,5 @@ Dla danych wejściowych:
 poprawną odpowiedzią jest
 ```
 TAK
-Wystarczą 3 monety: dwa razy 3 i jedna 5.
 ```
+Wystarczą 3 monety: dwa razy 3 i jedna 5.

@@ -14,6 +14,6 @@ Dla danych wejściowych
 poprawną odpowiedzią jest
 ```
 6
+```
 Wskazówka:
 ![image](IMG_20130918_080816.png)
-```

@@ -28,6 +28,6 @@ poprawną odpowiedzią jest
 | januszex |
 |          |
 +----------+
+```
 Uwaga
 Zwróć uwagę na zachowanie odstępów pomiędzy ramką, a napisem.
-```

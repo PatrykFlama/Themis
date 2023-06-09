@@ -14,12 +14,14 @@ Dla danych wejściowych:
 
 ```
 4
+```
 Twój program powinien wypisać
 
+```
 5
-Piny można połączyć w następujące sposoby:
+```
 
 #### Przykładowe połączenie dla 4 pinów.
+Piny można połączyć w następujące sposoby:
 
 ![image](polaczenie.png)
-```

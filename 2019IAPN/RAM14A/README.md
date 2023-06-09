@@ -6,5 +6,3 @@ Napisz program, który wczyta liczbę naturalną n ( -1018 ≤ n ≤ 1018) i wyp
 
 #### Przykład
 Jeśli na taśmie wejściowej znajdzie się liczba 538, to na taśmie wynikowej powinna zostać wypisana liczba 8.
-
-```

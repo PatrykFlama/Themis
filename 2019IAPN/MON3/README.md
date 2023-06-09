@@ -19,8 +19,10 @@ Dla danych:
 3 2
 5 1
 11
+```
 
 twój program powinien wypisać:
 
+```
 3
 ```
