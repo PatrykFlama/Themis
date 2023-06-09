@@ -1,5 +1,5 @@
-n-ta różnica w ciągu
-Problem code: CPRIMER3 | Time: 1.00 s | Memory: 32 MB | Solved: yes | print
+# n-ta różnica w ciągu
+###### Problem code: CPRIMER3 \| Time: 1.00 s \| Memory: 32 MB \| Solved: yes \| print
 
 Zadanie
 Rozważmy następujący ciąg liczb naturalnych:
@@ -9,15 +9,19 @@ Jak łatwo zauważyć, kolejne różnice między sąsiadującymi wyrazami tego c
 
 Przyjmujemy, że elementy numerowane są od zera.
 
-Wejście
+#### Wejście
 W jedynym wierszu wejścia znajduje się liczba naturalna n, nie większa od 10000.
 
-Wyjście
+#### Wyjście
 W jedynym wierszu wyjścia znajduje się wartość n-tego elementu powyżej opisanego ciągu.
 
-Przykład
+#### Przykład
 Dla danych wejściowych
 
+```
 7
+```
 poprawną odpowiedzią jest
+```
 22
+```
