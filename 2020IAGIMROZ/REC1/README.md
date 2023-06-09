@@ -1,0 +1,26 @@
+Rekurencyjny ciąg
+Problem code: REC1 | Time: 1.00 s | Memory: 16 MB | Solved: yes | print
+
+Zadanie
+Oblicz n-ty wyraz następującego ciągu:
+a[0] = 2
+a[2*n] = a[n]*a[n]
+a[2*n+1] = a[2*n]
+
+Wejście
+Na wejściu dana jest pojedyncza liczba n. Możesz założyć, że wynik nie przekroczy typu int.
+
+Wyjście
+Na wyjściu podaj wartość a[n].
+
+Przykład
+Dla danych wejściowych
+
+0
+poprawną odpowiedzią jest
+2
+Dla danych wejściowych
+
+14
+poprawną odpowiedzią jest
+256

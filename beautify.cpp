@@ -37,7 +37,7 @@ void beautify(string filename){
     const vector<wstring> codeblock = {L"danych", L"wyjścia", L"wejścia", L"wejściowych", L"wyjściowych", L"przykład", L"przykłady",
                                        L"odpowiedzią", L"poprawną", L"poprawne", L"poprawnym", L"poprawnymi", L"poprawna", L"poprawny",
                                        L"danych", L"wej", L"wyj", L"przyk", L"odpowied", L"poprawn", L"Wynik", L"wynik", L"wypisa"};
-    const vector<wstring> end_codeblock = {L"Uzasadnienie", L"uzasadnienie", L"Wyjaśnienie", L"Wyja", L"wyja", L"Uwaga"};
+    const vector<wstring> end_codeblock = {L"Uzasadnienie", L"uzasadnienie", L"Wyjaśnienie", L"Wyja", L"wyja", L"Uwaga", L"Note", L"note"};
 
     wifstream fin(filename + "/README.md");
     wofstream fout(filename + "/temp.md");

@@ -1,0 +1,1 @@
+Treść dostępna jest tutaj: [PDF](https://turnieje.solve.edu.pl/contests/download_desc/46)
