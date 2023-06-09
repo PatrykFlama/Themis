@@ -89,21 +89,19 @@ void beautify(string filename){
     fin.close();
     fout.close();
 
-    // remove(filename.c_str());
-    // rename((filename + "/temp.md").c_str(), 
-    //        (filename + "/README.md").c_str());
+    remove((filename + "/README.md").c_str());
+    rename((filename + "/temp.md"  ).c_str(), 
+           (filename + "/README.md").c_str());
     
     cout << filename << endl;
 }
 
 
 int main(){
-    // ifstream fin("temp.txt");
-    // string filename;
-    // while(fin >> filename){
-    //     beautify(filename);
-    // }
-    // fin.close();
-
-    beautify("STARS01");
+    ifstream fin("temp.txt");
+    string filename;
+    while(fin >> filename){
+        beautify(filename);
+    }
+    fin.close();
 }
