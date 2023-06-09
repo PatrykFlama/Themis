@@ -1,5 +1,5 @@
-Elephant
-Problem code: ELEPH | Time: 1.00 s | Memory: 32 MB | Solved: yes | print
+# Elephant
+###### Problem code: ELEPH \| Time: 1.00 s \| Memory: 32 MB \| Solved: yes \| print
 
 Polar bears Menshykov and Uslada from the zoo of St. Petersburg and elephant Horace from the zoo of Kiev got hold of lots of wooden cubes somewhere. They started making cube towers by placing the cubes one on top of the other. They defined multiple towers standing in a line as a wall. A wall can consist of towers of different heights.
 
@@ -8,22 +8,4 @@ Horace was the first to finish making his wall. He called his wall an elephant. 
 Your task is to count the number of segments where Horace can "see an elephant".
 
 Input
-The first line contains two integers n and w (1 ≤ n, w ≤ 2·105) — the number of towers in the bears' and the elephant's walls correspondingly. The second line contains n integers ai (1 ≤ ai ≤ 109) — the heights of the towers in the bears' wall. The third line contains w integers bi (1 ≤ bi ≤ 109) — the heights of the towers in the elephant's wall.
-
-Output
-
-Print the number of segments in the bears' wall where Horace can "see an elephant". Note that two elephants can cover each other.
-
-![image](ELEPH.png)
-
-Example
-Input
-
-13 5
-2 4 5 5 4 3 2 2 2 3 3 2 1
-3 4 4 3 2
-Output
-
-2
-Note: The picture to the left shows Horace's wall from the sample, the picture to the right shows the bears' wall. The segments where Horace can "see an elephant" are in gray.
-
+The first line contains two integers n and w (1
