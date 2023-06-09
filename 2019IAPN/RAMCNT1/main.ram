@@ -1,0 +1,12 @@
+        load  =0
+        store 1
+petla:  read  0
+        jzero koniec
+        sub   =1
+        jzero jeden
+        jump  petla
+jeden:  load  1
+        add   =1
+        store 1
+        jump  petla
+koniec: write 1

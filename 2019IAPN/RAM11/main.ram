@@ -1,0 +1,8 @@
+           read  1
+           read  2
+           load  1
+           sub   2
+           jgtz  mniejsze2
+           write 1
+           halt  
+mniejsze2: write 2

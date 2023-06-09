@@ -1,0 +1,21 @@
+        read  0
+        jgtz  dalej
+        write =0
+        halt  
+dalej:  sub   =1
+        store 1
+        load  =1
+        store 2
+        store 3
+fib:    load  1
+        jzero koniec
+        sub   =1
+        store 1
+        load  3
+        store 4
+        add   2
+        store 3
+        load  4
+        store 2
+        jump  fib
+koniec: write 3

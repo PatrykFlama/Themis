@@ -1,0 +1,49 @@
+          read  2        #2 - k
+          read  1        #1 - n
+          load  2
+          add   1
+          store 2        #2 - k + n
+          load  =0
+          store 3        #3 - temp
+          store 4        #4 - cyf jedn
+          store 10       #10 - najwieksza suma cyfr jedn
+          store 11       #11 - n dla naj sum cyf jedn
+petla:    load  1
+          sub   2
+          jzero koniec
+          load  1
+          store 5        #5 - kopia n
+sumajedn: load  5
+          jzero posumie
+          div   =10
+          mult  =-10
+          add   5        #mamy cyf jedn
+          add   4
+          store 4
+          load  5
+          div   =10
+          store 5
+          jump  sumajedn
+posumie:  load  1
+          store 6        #6 - kopia n
+          load  4
+          store 7        #7 - suma cyfr jednosci
+          sub   10       #czy nowa suma jest wieksza
+          jgtz  wieksza
+          load  1        #reset ustawien
+          add   =1
+          store 1
+          load  =0
+          store 4
+          jump  petla
+wieksza:  load  6        #wczytaj n z naj sum cyf jedn
+          store 11       #zapisz naj n
+          load  7        #wczytaj naj n
+          store 10       #zapisz naj n
+          load  1        #reset ustawien
+          add   =1
+          store 1
+          load  =0
+          store 4
+          jump  petla
+koniec:   write 11

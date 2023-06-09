@@ -1,0 +1,27 @@
+             load  =1
+             store 4           #4 -> potega
+             read  2           #2 -> liczba a
+             read  1           #1 -> liczba b
+             load  2           #3 -> a po potędze
+             store 3
+             load  1
+             sub   =1
+             jzero wyjatek
+petla:       load  3           #pętla główna
+             sub   1
+             jgtz  zaokrkoniec
+             jzero koniec
+             load  3
+             mult  2
+             store 3
+             load  4
+             add   =1
+             store 4
+             jump  petla
+zaokrkoniec: load  4
+             sub   =1
+             write 0
+             halt  
+koniec:      write 4
+             halt  
+wyjatek:     write =0

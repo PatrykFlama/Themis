@@ -1,0 +1,23 @@
+       read  1
+       load  =2
+       store 2
+       load  1
+       sub   =1
+       jgtz  dalej
+       jump  nie
+dalej: load  2
+       mult  0
+       sub   1
+       jgtz  tak
+       load  1
+       div   2
+       mult  2
+       sub   1
+       jzero nie
+       load  2
+       add   =1
+       store 2
+       jump  dalej
+tak:   write =1
+       halt  
+nie:   write =0

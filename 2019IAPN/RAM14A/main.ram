@@ -1,0 +1,7 @@
+read  1   #number
+load  1   #number to 0
+div   =10 #number without unity digit (step 1)
+mult  =10 #number without unity digit (step 2)
+sub   1   #get -(unity digit)
+mult  =-1 #make unity digit
+write 0

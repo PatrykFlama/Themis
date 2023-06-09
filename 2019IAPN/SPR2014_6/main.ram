@@ -1,0 +1,30 @@
+         load  =2
+         store 1
+         read  0
+         add   =1
+         store 2
+petla:   load  1
+         add   =1
+         store 1
+         read  ^0
+         load  ^1
+         add   =1
+         jzero koniec
+         jump  petla
+
+koniec:  load  1
+         sub   2
+         store 1
+
+koniec1: load  2
+         sub   =1
+         store 2
+         jzero stop
+         load  1
+         add   =1
+         store 1
+         load  ^1
+         write 0
+         jump  koniec1
+
+stop:    halt  

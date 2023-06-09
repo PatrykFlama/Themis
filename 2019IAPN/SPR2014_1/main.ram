@@ -1,0 +1,9 @@
+read  1
+load  =1
+write 0
+mult  1
+write 0
+mult  1
+write 0
+mult  1
+write 0

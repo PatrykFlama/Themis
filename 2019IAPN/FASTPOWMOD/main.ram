@@ -1,0 +1,37 @@
+        read  1      #a -> 1
+        read  2      #b -> 2
+        read  3      #c -> 3
+        load  =1
+        store 5      #reszta
+
+petla:  load  2      #reszta^b
+        jzero koniec
+
+        load  1      #reszta z a/c
+        div   3
+        mult  3
+        sub   1
+        mult  =-1
+        store 1      #reszta a/c -> 4
+
+        load  2
+        div   =2
+        mult  =-2
+        add   2
+        jzero parz   #czy parz
+        load  5      #nparz
+        mult  1      #wynik * a
+        store 5
+parz:   load  1      #parz
+        mult  1      #wynik^2
+        store 1
+        load  2      #b->b/2
+        div   =2
+        store 2
+        jump  petla
+koniec: load  5      #reszta z reszty^b/c
+        div   3      #r((r(a/c)^b)/c)
+        mult  3
+        sub   5
+        mult  =-1
+        write 0

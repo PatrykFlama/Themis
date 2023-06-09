@@ -1,0 +1,11 @@
+read  1  #a
+read  0  #b
+mult  0  #b^2
+mult  1  #/\ * a
+store 2  #store /\
+load  =3 #load 3
+mult  1  #a*3
+store 1  #store a*3
+load  2  #load mult
+sub   1  #mult - a*3
+write 0  #print

@@ -1,0 +1,25 @@
+           load  =0
+           store 1         #k w 1
+           read  2         #x w 2
+duzapetla: load  2
+           sub   =1
+           jzero xto1
+           load  2
+           div   =2
+           mult  =2
+           sub   2
+           jzero xparzy
+           load  2
+           mult  =3
+           add   =1
+           store 2
+xpoparzyl: load  1
+           add   =1
+           store 1
+           jump  duzapetla
+xparzy:    load  2
+           div   =2
+           store 2
+           jump  xpoparzyl
+xto1:      write 1
+           halt  

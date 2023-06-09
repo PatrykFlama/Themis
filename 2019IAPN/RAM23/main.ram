@@ -1,0 +1,18 @@
+      read  1    #1 = wczytana liczba
+      load  =0   #3 = suma
+      store 3    #|
+loop: load  1    #-----tworzenie cyf jedn-----
+      div   =10  #skróć do jedności
+      mult  =10  #|
+      sub   1    #zredukuj do -jedności
+      mult  =-1  #zmień na jedności
+      store 2    #2 = cyfra jedności  ----stworzona----
+      load  3
+      add   =1   #dodaj cyf jedn do sumy
+      store 3
+      load  1    #skróć wczytaną liczbę
+      div   =10  #|
+      store 1    #|
+      jzero end  #jeśli koniec liczby: skocz do końca
+      jump  loop #skocz na początek pętli
+end:  write 3    #wypisz sumę

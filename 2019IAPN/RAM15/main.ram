@@ -1,0 +1,9 @@
+          read  1
+          load  1
+          div   =2
+          mult  =2
+          sub   1
+          jzero parzysta #skocz do parzysta
+          write =0       #nieparzysta
+          halt           #koniec
+parzysta: write =1       #parzysta

@@ -1,0 +1,48 @@
+           load  =0
+           store 7
+           store 6
+           store 5
+           load  =-1
+           store 4
+           read  10
+           load  10
+           add   =1
+           store 8
+           store 9
+           store 10
+
+duzapetla: load  5
+           sub   6
+           jgtz  wieksze
+dalej:     load  10
+           store 8
+           load  9
+           sub   =1
+           jzero koniec
+           store 9
+           load  =0
+           store 5
+           load  4
+           add   =1
+           store 4
+
+petla:     load  8
+           sub   =1
+           store 8
+           jzero duzapetla
+           read  0
+           sub   =1
+           jzero jeden
+           jump  petla
+jeden:     load  5
+           add   =1
+           store 5
+           jump  petla
+
+wieksze:   load  5
+           store 6
+           load  4
+           store 7
+           jump  dalej
+
+koniec:    write 7

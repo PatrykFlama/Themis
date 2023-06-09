@@ -1,0 +1,27 @@
+        read  0
+        store 1      #n
+        store 3      #kon
+        load  =0
+        store 2      #pocz
+petla:  load  2
+        sub   3
+        jzero koniec
+        load  2
+        add   3
+        add   =1
+        div   =2
+        store 4      #sr
+        load  4
+        mult  4
+        sub   1
+        mult  =-1
+        add   =1
+        jgtz  tak
+        load  4
+        sub   =1
+        store 3
+        jump  petla
+tak:    load  4
+        store 2
+        jump  petla
+koniec: write 2
