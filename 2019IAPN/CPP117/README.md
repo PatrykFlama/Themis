@@ -11,11 +11,7 @@ Należy wypisać w pojedynczej linii wyjścia oddzielone odstępem liczbę liter
 
 #### Przykłady
 |Dla danych wejściowych:|	Z kolei dla danych wejściowych:|	A dla danych wejściowych:|
-```
 |---|---|---|
 |`such`|`Stupid`|`tASK`|
-```
 |poprawną odpowiedzią jest:|	poprawną odpowiedzią jest:|	poprawną odpowiedzią jest:|
-```
 |`4 0`|`5 1`|`1 3`|
-```

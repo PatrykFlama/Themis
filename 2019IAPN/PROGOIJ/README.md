@@ -34,7 +34,5 @@ poprawną odpowiedzią jest
 ```
 Jeżeli próg wyniósłby 3 punkty, to wystarczy rozwiązać jedno zadanie – to warte 3 punkty, bądź to warte 5 punktów. Jeżeli natomiast próg wyniósłby 13 punktów, to wymagane byłoby rozwiązanie wszystkich sześciu zadań. Z kolei jeżeli próg wyniósłby 9 punktów, to wystarczyłoby rozwiązać trzy zadania, na przykład te warte 2, 3 oraz 5 punktów, co dawałoby 10 punktów.
 
-```
-Uwaga
+#### Uwaga
 Zadanie pochodzi z XIV Olimpiady Informatycznej Juniorów.
-```

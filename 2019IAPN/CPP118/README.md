@@ -11,11 +11,7 @@ Należy wypisać "chlopiec" lub "dziewczynka" w zależności od podejrzewanej p�
 
 #### Przykłady
 | Dla danych wejściowych:	 | Z kolei dla danych wejściowych:	| A dla danych wejściowych: |
-```
 |---|---|---|
 |		`Bajtosia`			 |		`Bajtek`					| 		`Cezary`			|
-```
 | poprawną odpowiedzią jest: |	poprawną odpowiedzią jest:		| poprawną odpowiedzią jest:|
-```
 |    `dziewczynka`			 |    `chlopiec`					| 	`chlopiec`				|
-```

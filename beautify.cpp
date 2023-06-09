@@ -31,12 +31,13 @@ void beautify(string filename){
     const int MAX_HL_LEN = 20;
     const int MIN_HL_LEN = 5;
     const wstring codeblock_separator = L"```";
+    const wstring headline_separator = L"#### ";
     const vector<wstring> headline = {L"Wejście", L"Wyjście", L"Przykład", L"Przykłady",
                                       L"Wej", L"Wyj", L"Przyk"};
     const vector<wstring> codeblock = {L"danych", L"wyjścia", L"wejścia", L"wejściowych", L"wyjściowych", L"przykład", L"przykłady",
                                        L"odpowiedzią", L"poprawną", L"poprawne", L"poprawnym", L"poprawnymi", L"poprawna", L"poprawny",
                                        L"danych", L"wej", L"wyj", L"przyk", L"odpowied", L"poprawn", L"Wynik", L"wynik", L"wypisa"};
-    const vector<wstring> end_codeblock = {L"Uzasadnienie", L"uzasadnienie", L"Wyjaśnienie", L"Wyja", L"wyja"};
+    const vector<wstring> end_codeblock = {L"Uzasadnienie", L"uzasadnienie", L"Wyjaśnienie", L"Wyja", L"wyja", L"Uwaga"};
 
     wifstream fin(filename + "/README.md");
     wofstream fout(filename + "/temp.md");
@@ -67,11 +68,15 @@ void beautify(string filename){
             }
         } 
         else if(contains(headline, line) && line.length() <= MAX_HL_LEN){
-            newline += L"#### " + line;
+            newline += headline_separator + line;
         }
         else if(in_example == 2 && line.length() < MIN_HL_LEN){
             in_codeblock = true;
             newline += codeblock_separator + L'\n' + line;
+        }
+        else if(in_example && contains(end_codeblock, line)){
+            newline += codeblock_separator + L'\n' + headline_separator + line;
+            in_codeblock = false;
         }
         else if((in_example && contains(codeblock, line))){
             if(in_codeblock){
@@ -83,10 +88,6 @@ void beautify(string filename){
                 newline += line;
                 codeblock_to_open = true;
             }
-        }
-        else if(in_example && contains(end_codeblock, line)){
-            newline += codeblock_separator + L'\n';
-            in_codeblock = false;
         }
         else {
             newline += line;
