@@ -110,11 +110,10 @@ void beautify(string filename){
 
 
 int main(){
-    // ifstream fin("temp.txt");
-    // string filename;
-    // while(fin >> filename){
-    //     beautify(filename);
-    // }
-    // fin.close();
-    beautify("MON2");
+    ifstream fin("temp.txt");
+    string filename;
+    while(fin >> filename){
+        beautify(filename);
+    }
+    fin.close();
 }
