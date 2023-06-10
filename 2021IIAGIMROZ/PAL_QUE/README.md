@@ -1,5 +1,5 @@
-Zapytania o palindromy
-Problem code: PAL_QUE | Time: 9.00 s | Memory: 256 MB | Solved: no | print
+# Zapytania o palindromy
+###### Problem code: PAL_QUE \| Time: 9.00 s \| Memory: 256 MB \| Solved: no \| print
 
 Pan Machenar prosi Cię o pomoc - dostajesz słowo s i musisz realizować następujące operacje:
 
@@ -9,19 +9,23 @@ Pan Machenar prosi Cię o pomoc - dostajesz słowo s i musisz realizować nastę
 
 Oczywiście zapytania dotyczą aktualnego słowa i jego literki są numerowane od 1.
 
-Wejście
+#### Wejście
 Wpierw słowo o dł <=10^5, potem q <=10^5. Potem q zapytań opisanych wyżej.
 
-Wyjście
+#### Wyjście
 Dla każdego zapytania typu 2 lub 3 wypisz szukaną długość palindromu.
 
-Przykład
+#### Przykład
 Dla danych wejściowych
 
+```
 abcd 3
 3 1
 1 2 c
 3 2
+```
 poprawną odpowiedzią jest
+```
 -1
 2
+```

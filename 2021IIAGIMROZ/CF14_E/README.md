@@ -1,5 +1,5 @@
-Wielbłądy
-Problem code: CF14_E | Time: 1.00 s | Memory: 32 MB | Solved: yes | print
+# Wielbłądy
+###### Problem code: CF14_E \| Time: 1.00 s \| Memory: 32 MB \| Solved: yes \| print
 
 Zadanie
 link
@@ -10,15 +10,19 @@ xi = i,
 yi-1 != yi,
 mają dokładnie t garbów. (garb to takie j, że yj - 1 < yj > yj + 1).
 
-Wejście
+#### Wejście
 Dwie liczby naturalne n, t (3 <= n <= 20, 1 <= t <= 10).
 
-Wyjście
+#### Wyjście
 Wypisz liczbę wielbłądów z t garbami.
 
-Przykład
+#### Przykład
 Dla danych wejściowych
 
+```
 6 1
+```
 poprawną odpowiedzią jest
+```
 6
+```

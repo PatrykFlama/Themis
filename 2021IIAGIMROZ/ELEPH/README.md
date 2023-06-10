@@ -1,5 +1,5 @@
-Elephant
-Problem code: ELEPH | Time: 1.00 s | Memory: 32 MB | Solved: yes | print
+# Elephant
+###### Problem code: ELEPH \| Time: 1.00 s \| Memory: 32 MB \| Solved: yes \| print
 
 Polar bears Menshykov and Uslada from the zoo of St. Petersburg and elephant Horace from the zoo of Kiev got hold of lots of wooden cubes somewhere. They started making cube towers by placing the cubes one on top of the other. They defined multiple towers standing in a line as a wall. A wall can consist of towers of different heights.
 

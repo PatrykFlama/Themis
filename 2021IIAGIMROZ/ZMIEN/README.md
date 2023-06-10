@@ -1,5 +1,5 @@
-Zmienna
-Problem code: ZMIEN | Time: 1.00 s | Memory: 32 MB | Solved: no | print
+# Zmienna
+###### Problem code: ZMIEN \| Time: 1.00 s \| Memory: 32 MB \| Solved: no \| print
 
 Jasio ma zmienną x, początkowo równą 1.
 
@@ -13,15 +13,19 @@ Jasio chciałby ustawić zmienną x na wartość naturalną N. Pomóż mu tego d
 Zadanie
 Napisz program, który: wczyta liczbę naturalną N, wyznaczy minimalną liczbę operacji, które należy wykonać, żeby zmienna x została ustawiona na N i wypisze wynik na standardowe wyjście.
 
-Wejście
+#### Wejście
 W pierwszym (i jedynym) wierszu wejścia znajduje się jedna liczba naturalna N, określająca cel Jasia, 1 <= N <= 10^18.
 
-Wyjście
+#### Wyjście
 W pierwszym (i jedynym) wierszu wyjścia powinna się znaleźć jedna nieujemna liczba całkowita -- minimalna liczba operacji niezbędnych do ustawienia zmiennej x na wartość N.
 
-Przykład
+#### Przykład
 Dla danych wejściowych
 
+```
 50
+```
 poprawną odpowiedzią jest
+```
 7
+```
