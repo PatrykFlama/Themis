@@ -12,13 +12,13 @@ int main(){
     int a = 0;
 
     for(int i = 1; i <= sqrt(in); i++){
-    	if(in%i == 0){
-    		if(in/i == i){
-    			a++;
-    		}else{
-    			a+=2;
-    		}
-    	}
+        if(in%i == 0){
+            if(in/i == i){
+                a++;
+            }else{
+                a+=2;
+            }
+        }
     }
 
     cout << a << endl;

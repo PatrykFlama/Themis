@@ -2,7 +2,7 @@
 using namespace std;
 
 main(){
-	ios::sync_with_stdio(false);
+    ios::sync_with_stdio(false);
     cin.tie(0);
     cout.tie(0);
 
@@ -10,7 +10,7 @@ main(){
     cin >> a;
 
     for(int i = 0; i <= a; i++){
-    	cout << i << ' ';
+        cout << i << ' ';
     }
 
     return 0;

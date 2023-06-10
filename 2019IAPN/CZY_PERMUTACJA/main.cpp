@@ -25,5 +25,5 @@ int main(){
     }
     cout << "TAK\n";
 
-	return 0;
+    return 0;
 }

@@ -12,28 +12,28 @@ int main(){
     char l = 0;
 
     for(int i = 0; i < s.size(); i++){
-    	tab[s[i]]++;
+        tab[s[i]]++;
     }
 
     for(int i = 65; i < 123; i++){
-    	if(tab[i] > 1){
-    		for(int x = 0; x < tab[i]/2; x++){
-    			ns.push_back(char(i));
-    		}
-    		if(tab[i] % 2 == 0) tab[i] = 0;
-    		else tab[i] = 1;
-    	}
+        if(tab[i] > 1){
+            for(int x = 0; x < tab[i]/2; x++){
+                ns.push_back(char(i));
+            }
+            if(tab[i] % 2 == 0) tab[i] = 0;
+            else tab[i] = 1;
+        }
 
-    	if(tab[i] == 1 && l == 0){
-    		l = i;
-    	}
+        if(tab[i] == 1 && l == 0){
+            l = i;
+        }
     }
 
     cs = ns;
     if(l != 0) ns += l;
 
     for(int i = cs.size()-1; i >= 0; i--){
-    	ns += cs[i];
+        ns += cs[i];
     }
 
     cout << ns << endl;
