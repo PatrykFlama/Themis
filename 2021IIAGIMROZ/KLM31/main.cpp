@@ -8,7 +8,6 @@ vector<int> ans;
 
 
 void compute_pi(string s, int n){
-    int len = 0;
     pi[0] = 0;
 
     for(int i = 0; i < n-1; i++){
@@ -18,44 +17,27 @@ void compute_pi(string s, int n){
         if(s[i+1] == s[j])
             j++;
         pi[i+1] = j;
+        if(pi[i+1] == w.size())
+            ans.push_back(i-w.size()-w.size()+1);
     }
 }
 
-// void kmp(int& n){
-//     int j = 0;
-//     for(int i = w.size()+1; i < n; i++){
-//         while(j != -1 && w[j] != t[i])
-//             j = pi[j];
-//         j++;
-//         if(j == w.size())
-//             ans.push_back(i-t.size()+1);
-//     }
-// }
-
-void test(int& n){
-    for(int i = w.size()+1; i < n; i++)
-        if(pi[i] == w.size())
-            ans.push_back(i-w.size()-w.size());
-}
 
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(0);
     cout.tie(0);
 
-    int T; cin >> T;
-    while(T--){
-        cin >> w >> t;     //wzorzec, tekst
-        int n = t.size()+w.size()+1;
-        compute_pi(w+'#'+t, n);
-        test(n);
+    int n;
+    cin >> n >> n;
+    cin >> w >> t;     //wzorzec, tekst
+    n = t.size()+w.size()+1;
+    compute_pi(w+'#'+t, n);
 
-        for(int i : ans)
-            cout << i << '\n';
-        //cout << '\n';
-
-        ans.clear();
-    }
+    if(ans.empty())
+        cout << "NIE\n";
+    else
+        cout << ans.front() << '\n';
 
     return 0;
 }

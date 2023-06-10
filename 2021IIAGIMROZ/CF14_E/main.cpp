@@ -1,42 +1,36 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-#define foo(val, from, to) for(int val = from; val < to; val++)
-
-const int L = 1e6+5;
-vector<int> tree[L];
-pair<int, int> pp[L];
-int t;
+#define FOR(var, from, to) for(int var = from; var < to; var++)
+int dp[21][12][12][4][4]; //? [dlugosc][garby][antygarby][przedostatni y][ostatni y]
 
 
-void dfs(int node){
-    pp[node].first = t++;
-
-    for(int i : tree[node])
-        dfs(i);
-
-    pp[node].second = t++;
-}
-
-int main() {
+int main(){
     ios_base::sync_with_stdio(false);
-    cin.tie(0), cout.tie(0);
+    cin.tie(0);
 
-    int n; cin >> n;
-    foo(i, 2, n+1){
-        int temp; cin >> temp;
-        tree[temp].push_back(i);
-    }
+    int n, t; cin >> n >> t;
 
-    dfs(1);
+    FOR(i, 0, 4)
+        FOR(j, 0, 4)
+            if(i != j)
+                dp[2][0][0][i][j] = 1;      // różne y po bokach
 
-    int t; cin >> t;
-    while(t--){
-        int u, v; cin >> u >> v;
-        if((pp[u].first >= pp[v].first) && (pp[u].second <= pp[v].second))
-            cout << "TAK\n";
-        else
-            cout << "NIE\n";
-    }
+    // po wszystkich polach z dp (możliwościach)
+    FOR(dlugosc, 2, n)
+        FOR(garby, 0, t+1)
+            FOR(antygarby, 0, t)
+                FOR(i, 0, 4)
+                    FOR(j, 0, 4)
+                        FOR(w, 0, 4)
+                            if(j != w)  // różne y
+                                dp[dlugosc+1][garby + (i < j and j > w)][antygarby + (i > j and j < w)][j][w] += dp[dlugosc][garby][antygarby][i][j];
+
+    int sum = 0;
+    FOR(i, 0, 4)
+        FOR(j, 0, 4)
+            sum += dp[n][t][t-1][i][j];
+
+    cout << sum << '\n';
 
     return 0;
 }

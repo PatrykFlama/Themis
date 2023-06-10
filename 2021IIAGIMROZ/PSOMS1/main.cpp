@@ -1,30 +1,26 @@
+//! psomos
 #include <bits/stdc++.h>
 using namespace std;
+#define ll long long 
+const int L = 1e6+5;
+int tab[L];
+
 
 int main(){
-    ios_base::sync_with_stdio(false);
+    ios_base::sync_with_stdio(0);
     cin.tie(0);
-    cout.tie(0);
-    
-    int t; cin >> t;
-    while(t--){
-        int a, b;
-        cin >> a >> b;
-        int tx = 1, ty = 0, ta = a, tb = b, temp;
-        
-        while(tb){
-            if(tb < ta)
-                swap(ta, tb), swap(tx, ty);
-            temp = tb/ta;
-            ty -= temp*tx;
-            tb -= temp*ta;
-        }
-        if(ta == 1){
-            if(tx < 0)
-            	tx += b;
-            cout << tx << '\n';
-        }
+
+    int n; cin >> n;
+    for(int i = 0; i < n; i++)
+        cin >> tab[i];
+
+    ll maxx = 0, local_max = 0;
+    for(int i = 0; i < n; i++){
+        local_max = max((ll)(tab[i]),local_max + tab[i]);
+        maxx = max(maxx, local_max);
     }
     
+    cout << maxx << "\n";
+
     return 0;
 }

@@ -1,72 +1,59 @@
+//! LIS
 #include <bits/stdc++.h>
 using namespace std;
-const int N = 31, L = 33000;
-#define ll long long
-int tab[N];
-vector<ll> sumL, sumR;
-int n;
+#define FOR(val, from, to) for(int val = from; val < to; val++)
+const int N = 1e3+5;
+int n, len = 0, ptr = 1, tab[N];
+int temp[N]; //? [lis length] = last minimal possible value
+//int res[N]; //? [number] = which number is before it in lis
 
-void mitmL(ll sum, int i, int cnt){
-    if(i == n/2){
-        if(cnt){
-            sumL.push_back(sum);
 
-            if(sum == 0){
-                cout << "TAK\n";
-                exit(0);
-            }
+// int bins(){
+
+// }
+
+void lis(){
+    temp[0] = -1, temp[1] = 0;
+
+    FOR(i, 1, n){
+        if(tab[i] > tab[temp[ptr]]){
+            ++ptr, temp[ptr] = i, len++;
+            //res[i] = temp[ptr-1];
         }
-
-        return;
-    }
-
-    mitmL(sum + tab[i], i+1, cnt+1);
-    mitmL(sum, i+1, cnt);
-}
-
-void mitmR(ll sum, int i, int cnt){
-    if(i == n){
-        if(cnt){
-            sumR.push_back(sum);
-
-            if(sum == 0){
-                cout << "TAK\n";
-                exit(0);
+        else{               //TODO: binsearch it!!!
+            FOR(j, 1, ptr+1){
+                if(tab[i] < tab[temp[j]]){
+                    temp[j] = i;
+                    //res[i] = temp[j-1];
+                    break;
+                }
             }
+            //bins();
         }
-
-        return;
     }
-
-    mitmR(sum + tab[i], i+1, cnt+1);
-    mitmR(sum, i+1, cnt);
 }
-
 
 int main(){
-    // ios_base::sync_with_stdio(false);
-    // cin.tie(0);
-    // cout.tie(0);
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+    //cout.tie(0);
 
-    sumL.reserve(L), sumR.reserve(L);
     cin >> n;
-
-    for(int i = 0; i < n; i++)
+    FOR(i, 0, n)
         cin >> tab[i];
+    //fill(res, res+n, -1);
 
-    mitmL(0, 0, 0);
-    mitmR(0, n/2, 0);
+    lis();
 
-    sort(sumR.begin(), sumR.end());
+    cout << len+1 << '\n';
 
-    for(ll i : sumL){
-        if(binary_search(sumR.begin(), sumR.end(), -i)){
-            cout << "TAK\n";
-            exit(0);
-        }
-    }
-
-    cout << "NIE\n";
+    // cout << "temp:\n";
+    // FOR(i, 0, ptr+1)
+    //     cout << i << ' ';
+    // cout << '\n';
+    // FOR(i, 0, ptr+1)
+    //     cout << temp[i] << ' ';
+    // cout << "\n\n";
 
     return 0;
 }

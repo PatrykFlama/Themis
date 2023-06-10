@@ -2,15 +2,26 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define FOR(val, from, to) for(int val = from; val < to; val++)
-const int N = 1e3+5;
+const int N = 1e6+5;
 int n, len = 0, ptr = 1, tab[N];
 int temp[N]; //? [lis length] = last minimal possible value
 //int res[N]; //? [number] = which number is before it in lis
 
 
-// int bins(){
+void bins(int r, int iter){
+    int l = 0, mid = (l+r)/2;
+    while(l < r){
+        if(tab[temp[mid]] <= tab[iter])
+            l = mid+1;
+        else
+            r = mid;
 
-// }
+        mid = (l+r)/2;
+    }
+
+    temp[l] = iter;
+    //res[iter] = temp[l-1];
+}
 
 void lis(){
     temp[0] = -1, temp[1] = 0;
@@ -20,16 +31,8 @@ void lis(){
             ++ptr, temp[ptr] = i, len++;
             //res[i] = temp[ptr-1];
         }
-        else{               //TODO: binsearch it!!!
-            FOR(j, 1, ptr+1){
-                if(tab[i] < tab[temp[j]]){
-                    temp[j] = i;
-                    //res[i] = temp[j-1];
-                    break;
-                }
-            }
-            //bins();
-        }
+        else
+            bins(ptr, i);
     }
 }
 

@@ -1,51 +1,52 @@
-//! BOOKS
+//! Bombowanie - znajdź punkty artykulacji
 #include <bits/stdc++.h>
 using namespace std;
-#define FOR(val, from, to) for(int val = from; val < to; val++)
-const int N = 1e5+5, H = 1e3+1;
-int tab[N], n, k;
+#define pii pair<int, int>
+const int L = 1e5+5;
+vector<int> graph[L];
+int pre[L], low[L], t = 0;
+set<int> S;
 
 
-bool chck(int maxx){
-    int div = 0, tempsum = 0, tempmax = INT_MIN;
+void dfs(int v, int p){
+    int tempsum = 0;
+    low[v] = pre[v] = ++t;
 
-    FOR(i, 0, n){
-        if(div > k)
-            return 0;
-
-        if(tempsum+tab[i] > maxx)
-            tempmax = max(tempmax, tempsum), tempsum = 0, ++div, --i;
-        else
-            tempsum += tab[i];
-    }
-    return 1;
-}
-
-void bins(int l, int r){
-    int mid = (l+r)/2;
-
-    while(l < r){
-        if(chck(mid))
-            r = mid;
-        else
-            l = mid+1;
-        
-        mid = (l+r)/2;
+    for(int u : graph[v]){
+        if(!pre[u]){
+            dfs(u, v);
+            low[v] = min(low[v], low[u]);
+            if(low[u] >= pre[v] && p != -1)
+                S.insert(v);
+            ++tempsum;
+        } else if(u != p)
+            low[v] = min(low[v], pre[u]);
     }
 
-    cout << mid << '\n';
+    if(tempsum > 1 && p == -1)
+        S.insert(v);
 }
 
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(0);
-    //cout.tie(0);
+    cout.tie(0);
 
-    cin >> n >> k; //max 1e5
-    FOR(i, 0, n)
-        cin >> tab[i]; //max 1e3
+    int n, m; cin >> n >> m;    // minn = 1e5, minm = 1e6
+    for(int i = 0; i < m; i++){
+        int a, b; cin >> a >> b;
+        graph[a].push_back(b);
+        graph[b].push_back(a);
+    }
 
-    bins(0, H*n);
+    for(int i = 1; i <= n; i++)
+        if(!pre[i])
+            dfs(i, -1);
+
+    cout << S.size() << '\n';
+    for(auto i : S)
+        cout << i << ' ';
+    cout << '\n';
 
     return 0;
 }

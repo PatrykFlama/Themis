@@ -37,7 +37,7 @@ Save(){
 }
 
 Sleep, 3000
-Loop 10 {
+Loop 5 {
 	SelectCode()
 	SelAll()
 	Sleep, 50

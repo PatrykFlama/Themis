@@ -1,66 +1,51 @@
-//niesmialy jasio
-#include<bits/stdc++.h>
+//! Mosty w grafie prostym
+#include <bits/stdc++.h>
 using namespace std;
-#define foo(val, from, to) for(int val = from; val < to; val++)
-const int L = 2e5+5, LG = 20;
-
-vector<int> tree[L];
-pair<int, int> pp[L];
-int jumps[L][LG], depth[L];
-int t = 1;
+#define pii pair<int, int>
+const int L = 1e5+5;
+vector<int> graph[L];
+int pre[L], low[L], t = 1;
+priority_queue< pii, vector<pii>, greater<pii> > pq;
 
 
-void dfs(int u, int v, int dep){
-    pp[u].first = t++;
-    depth[u] = dep;
+void dfs(int v, int p){
+    low[v] = pre[v] = t++;
 
-    jumps[u][0] = v;
-    foo(i, 1, LG)
-        jumps[u][i] = jumps[jumps[u][i-1]][i-1];
-
-    for(int i : tree[u])
-        if(i != v)
-            dfs(i, u, dep+1);
-
-    pp[u].second = t++;
-}
-
-bool in_stree(int u, int v){
-    return (pp[u].first <= pp[v].first) && (pp[u].second >= pp[v].second);
-}
-
-int lca(int u, int v){
-    if(in_stree(u, v))
-        return u;
-    if(in_stree(v, u))
-        return v;
-    for(int i = LG-1; i >= 0; i--){
-        if(!in_stree(jumps[u][i], v))
-            u = jumps[u][i];
+    for(int u : graph[v]){
+        if(!pre[u]){
+            dfs(u, v);
+            low[v] = min(low[v], low[u]);
+            if(pre[u] == low[u]){
+                if(v < u)
+                    pq.push({v, u});
+                else
+                    pq.push({u, v});
+            }
+        } else if(u != p)
+            low[v] = min(low[v], pre[u]);
     }
-    return jumps[u][0];
 }
 
-int main() {
+
+int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(0);
     cout.tie(0);
 
-    int n, q; cin >> n >> q;    //no. cities & queries
-    //read roads
-    tree[1].push_back(1);
-    foo(i, 2, n+1){
+    int n, m; cin >> n >> m;    // mn = 1e5, mm = 1e5
+    for(int i = 0; i < m; i++){
         int a, b; cin >> a >> b;
-        tree[a].push_back(b);
-        tree[b].push_back(a);
+        graph[a].push_back(b);
+        graph[b].push_back(a);
     }
-    //calculate
-    dfs(1, 1, 0);
 
-    int u, v, suma = 0;
-    while(q--){
-        cin >> v >> u;
-        cout << depth[v] + depth[u] - 2*depth[lca(u,v)] << '\n';
+    for(int i = 1; i <= n; i++)
+        if(!pre[i])
+            dfs(i, -1);
+
+    while(!pq.empty()){
+        cout << pq.top().first << ' ' << pq.top().second << '\n';
+        pq.pop();
     }
 
     return 0;

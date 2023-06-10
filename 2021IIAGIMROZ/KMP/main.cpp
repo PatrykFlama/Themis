@@ -1,44 +1,61 @@
-#include <bits/stdc++.h>
+//kmp?
+#include<bits/stdc++.h>
 using namespace std;
-string s;
-int n, m;
+const int L = 2e6+15;
+int pi[L];
+string w, t;
+vector<int> ans;
 
 
-bool poss(int x){
-    int temp = 0;
-    for(int i = 0; i < n; i++){
-        if(s[i] == '+'){
-            temp++, i += x-1;
-            if(temp > m)
-                return 0;
-        }
+void compute_pi(string s, int n){
+    int len = 0;
+    pi[0] = 0;
+
+    for(int i = 0; i < n-1; i++){
+        int j = pi[i];
+        while(j > 0 && s[i+1] != s[j])
+            j = pi[j-1];
+        if(s[i+1] == s[j])
+            j++;
+        pi[i+1] = j;
     }
-
-    return 1;
 }
 
-int binsearch(int& minn, int& maxx){
-    while(minn < maxx){
-        int mid = (minn+maxx)/2;
-        if(poss(mid))
-            maxx = mid;
-        else
-            minn = mid+1;
-    }
+// void kmp(int& n){
+//     int j = 0;
+//     for(int i = w.size()+1; i < n; i++){
+//         while(j != -1 && w[j] != t[i])
+//             j = pi[j];
+//         j++;
+//         if(j == w.size())
+//             ans.push_back(i-t.size()+1);
+//     }
+// }
 
-    return minn;
+void test(int& n){
+    for(int i = w.size()+1; i < n; i++)
+        if(pi[i] == w.size())
+            ans.push_back(i-w.size()-w.size());
 }
 
-int main(){
+int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(0);
-    //cout.tie(0);
+    cout.tie(0);
 
-    cin >> n >> s >> m;
+    int T; cin >> T;
+    while(T--){
+        cin >> w >> t;     //wzorzec, tekst
+        int n = t.size()+w.size()+1;
+        compute_pi(w+'#'+t, n);
+        test(n);
 
-    int maxx = n-1, minn = 0;
+        for(int i : ans)
+            cout << i << '\n';
+        //cout << '\n';
 
-    cout << binsearch(minn, maxx) << '\n';
+        ans.clear();
+    }
 
     return 0;
 }

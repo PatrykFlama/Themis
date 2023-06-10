@@ -1,47 +1,30 @@
-//funkcja π
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-const int L = 1e4+5;
-int pi[L], n;
-string w;//, t;
+const int T = 1e4+5, M = 505;
+int dp[T][M];
+// dp[time][exhaustion] == total dist
 
 
-void compute_pi(){
-    int len = 0;
-    pi[0] = 0;
-
-    for(int i = 0; i < n-1; i++){
-        int j = pi[i];
-        while(j > 0 && w[i+1] != w[j])
-            j = pi[j-1];
-        if(w[i+1] == w[j])
-            j++;
-        pi[i+1] = j;
-    }
-}
-
-// void kmp(){
-//     int j = 0;
-//     for(int i = 0; i < n; i++){
-//         while(j != -1 && w[j] != t[i])
-//             j = pi[j];
-//         j++;
-//         if(j == w.size())
-//             1;
-//     }
-// }
-
-
-int main() {
+int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(0);
+    cout.tie(0);
 
-    cin >> n >> w;
-    compute_pi();
+    int n, m, dist; cin >> n >> m;
 
-    for(int i = 0; i < n; i++)
-        cout << pi[i] << ' ';
-    cout << '\n';
+    for(int t = 0; t < n; t++){
+        cin >> dist;
+        for(int ex = 0; ex <= m && ex <= t; ex++){
+            if(ex == 0)
+                dp[t+1][ex] = max(dp[t+1][ex], dp[t][ex]);
+            if(t+ex <= n)
+                dp[t+ex][0] = max(dp[t+ex][0], dp[t][ex]);
+            if(ex+1 <= m)
+                dp[t+1][ex+1] = max(dp[t+1][ex], dp[t][ex] + dist);
+        }
+    }
+
+    cout << dp[n][0];
 
     return 0;
 }

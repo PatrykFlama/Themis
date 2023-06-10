@@ -1,79 +1,78 @@
+//! sale wykładowe
 #include <bits/stdc++.h>
 using namespace std;
-const int T = 1 << 20;
+const int L = 1e3+5;
+vector<int> graph[L];
+vector<int> allscc;   // list of scc representatives
+vector<int> components[L];  // list of scc verticies
+vector<int> smallestcomp(L, INT_MAX);
+int pre[L], low[L], t;
+//int subnr[L];   // to which scc you belong
+bitset<L> onStack;
+stack<int> st;
 
-int tree[T << 1], lazy[T << 1];
-const int NONE = 0; //! UWAGA TO ZALEZY (tutaj trzeba dobrac zeby nie kolidowało)
 
+void dfs(int v){
+    onStack[v] = true, low[v] = pre[v] = ++t;
+    st.push(v);
 
-int func(int a, int b){
-    return max(a, b);
-}
+    for(int i : graph[v]){
+        if(!pre[i]){
+            dfs(i);
+            low[v] = min(low[v], low[i]);
+        } else if(onStack[i])
+            low[v] = min(low[v], pre[i]);
+    }
 
-void push(int node, int lo, int hi) {
-    if(lazy[node] != NONE) {
-        tree[node] += lazy[node]; //! od operacji
-        if(lo != hi) {
-            lazy[node * 2]     += lazy[node]; //! od operacji
-            lazy[node * 2 + 1] += lazy[node]; //! od operacji
+    if(low[v] == pre[v]){
+        allscc.push_back(v);
+        int temp;
+        while(temp != v){       //get verticies from the stack as long as they are not you
+            temp = st.top(), st.pop();
+            onStack[temp] = false;
+            components[v].push_back(temp);
+            smallestcomp[v] = min(smallestcomp[v], temp);
+            //subnr[temp] = v;
         }
-        lazy[node] = NONE;
     }
 }
 
-int get(int a, int b, int node = 1, int lo = 0, int hi = T - 1) {
-    push(node, lo, hi);
-    
-    if(hi < a or b < lo)        //poza
-        return NONE; //! UWAGA TO ZALEZY od zapytania
 
-    if(a <= lo and hi <= b)
-        return tree[node];
-
-    // przecina sie
-    int mid = (lo + hi) / 2;
-    int l = get(a, b, node * 2    , lo     , mid);
-    int r = get(a, b, node * 2 + 1, mid + 1, hi );
-    return func(l, r); //! UWAGA ZALEZY od zapytania
-}
-
-void update(int a, int b, int val, int node = 1, int lo = 0, int hi = T - 1) {
-    push(node, lo, hi);
-
-    if(hi < a or b < lo)    //poza
-        return;
-
-    if(a <= lo and hi <= b) {
-        // caly w srodku
-        lazy[node] += val; //! UWAGA TO ZALEZY od operacji
-        push(node, lo, hi);
-        return;
-    }
-
-    // przecina sie
-    int mid = (lo + hi) / 2;
-    update(a, b, val, node * 2    , lo     , mid);
-    update(a, b, val, node * 2 + 1, mid + 1, hi );
-    tree[node] = func(tree[node * 2], tree[node * 2 + 1]); //! UWAGA TO ZALEZY od zapytania
-}
-
-
-int main() {
+int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(0);
-    cout.tie(0);
+    //cout.tie(0);
 
-    int n, m, t; cin >> n >> m >> t;    // trasa ; miejsca ; zapytania
-    while(t--){
-        int from, to, amnt; cin >> from >> to >> amnt;
-        update(from, to-1, amnt);
-        if(get(from, to) > m){
-            cout << "N\n";
-            update(from, to-1, -amnt);
-        } else{
-            cout << "T\n";
-        }
+    int n, m; cin >> n >> m;
+    for(int i = 0; i < m ; i++){
+        int a, b; cin >> a >> b;
+        graph[a].push_back(b);
     }
+
+    for(int i = 1; i <= n; i++)
+        if(!pre[i])
+            dfs(i);
+
+    int maxx = INT_MIN, smallest = INT_MAX, ptr;
+    for(int nr : allscc){
+        if((maxx < int(components[nr].size())) || (maxx == int(components[nr].size()) && smallestcomp[nr] < smallest))
+            maxx = int(components[nr].size()), ptr = nr, smallest = smallestcomp[nr];
+    }
+
+    // for(int i : allscc){
+    //     cout << i << '/' << components[i].size() << '/' << smallestcomp[i] << ": ";
+    //     for(auto j : components[i]){
+    //         cout << j << ' ';
+    //     }
+    //     cout << '\n';
+    // }
+
+    sort(components[ptr].begin(), components[ptr].end());
+
+    cout << maxx << '\n';
+    for(int i : components[ptr])
+        cout << i << '\n';
+    cout << '\n';
 
     return 0;
 }

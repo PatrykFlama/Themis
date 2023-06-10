@@ -1,39 +1,32 @@
-//! LIS
 #include <bits/stdc++.h>
 using namespace std;
-#define FOR(val, from, to) for(int val = from; val < to; val++)
-const int N = 1e6+5;
-int n, len = 0, ptr = 1, tab[N];
-int temp[N]; //? [lis length] = last minimal possible value
-//int res[N]; //? [number] = which number is before it in lis
+string s;
+int n, m;
 
 
-void bins(int r, int iter){
-    int l = 0, mid = (l+r)/2;
-    while(l < r){
-        if(tab[temp[mid]] <= tab[iter])
-            l = mid+1;
-        else
-            r = mid;
-
-        mid = (l+r)/2;
+bool poss(int x){
+    int temp = 0;
+    for(int i = 0; i < n; i++){
+        if(s[i] == '+'){
+            temp++, i += x-1;
+            if(temp > m)
+                return 0;
+        }
     }
 
-    temp[l] = iter;
-    //res[iter] = temp[l-1];
+    return 1;
 }
 
-void lis(){
-    temp[0] = -1, temp[1] = 0;
-
-    FOR(i, 1, n){
-        if(tab[i] > tab[temp[ptr]]){
-            ++ptr, temp[ptr] = i, len++;
-            //res[i] = temp[ptr-1];
-        }
+int binsearch(int& minn, int& maxx){
+    while(minn < maxx){
+        int mid = (minn+maxx)/2;
+        if(poss(mid))
+            maxx = mid;
         else
-            bins(ptr, i);
+            minn = mid+1;
     }
+
+    return minn;
 }
 
 int main(){
@@ -41,22 +34,11 @@ int main(){
     cin.tie(0);
     //cout.tie(0);
 
-    cin >> n;
-    FOR(i, 0, n)
-        cin >> tab[i];
-    //fill(res, res+n, -1);
+    cin >> n >> s >> m;
 
-    lis();
+    int maxx = n-1, minn = 0;
 
-    cout << len+1 << '\n';
-
-    // cout << "temp:\n";
-    // FOR(i, 0, ptr+1)
-    //     cout << i << ' ';
-    // cout << '\n';
-    // FOR(i, 0, ptr+1)
-    //     cout << temp[i] << ' ';
-    // cout << "\n\n";
+    cout << binsearch(minn, maxx) << '\n';
 
     return 0;
 }

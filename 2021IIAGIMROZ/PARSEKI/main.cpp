@@ -1,65 +1,71 @@
-#include <bits/stdc++.h>
+// PARSEKI
+#include<bits/stdc++.h>
 using namespace std;
-#define fastio(out) ios_base::sync_with_stdio(false);cin.tie(0);if(out){cout.tie(0);}  //? 0/1 == small_out/big_out
+#define FOR(val, from, to) for(int val = from; val < to; val++)
+#define pii pair<int, int>
+
+const int L = 2e5+5, LG = 18;
+vector<pii> tree[L];    //{to, weight}
+pii pp[L];
+int jumps[L][LG];
+long long prefsum[L];
+int t = 1;
 
 
-template <typename T> 
-struct Point{
-    T x, y;
+void dfs(int u, int depth, int father){
+    pp[u].first = t++;
 
-    Point() : Point(0, 0) {}
+    jumps[u][0] = father;
+    FOR(i, 1, LG)
+        jumps[u][i] = jumps[jumps[u][i-1]][i-1];
 
-    Point(T _x, T _y) : x(_x), y(_y) {}
+    for(pii& i : tree[u])
+        if(i.first != father){
+            prefsum[i.first] = prefsum[u] + i.second;
+            dfs(i.first, depth+1, u);
+        }
 
-    friend ostream &operator<< (ostream &os, const Point<T> &point) {
-        os << point.x << " " << point.y;
-        return os;
-    }
-
-    friend istream &operator>> (istream &is, Point<T> &point) {
-        is >> point.x >> point.y;
-        return is;
-    }
-
-    Point<T> operator+ (const Point<T> &p2) const { 
-        return {x + p2.x, y + p2.y}; 
-    }
-
-    Point<T> &operator+= (const Point<T> &p2) {
-        x += p2.x, y += p2.y;
-        return *this;
-    }
-
-    Point<T> operator- (const Point<T> &p2) const {
-        return {x - p2.x, y - p2.y}; 
-    }
-
-    T dot(const Point<T> &p2) const {           //? iloczyn skalarny
-        return x * p2.x + y * p2.y;
-    }
-
-    T cross(const Point<T> &p2) const {         //? iloczyn wektorowy
-        return x * p2.y - y * p2.x;
-    }
-};
-
-template <typename T>
-T triangle_area(const Point<T> &p1, const Point<T> &p2, const Point<T> &p3) {
-    return 0.5 * abs((p2 - p1).cross(p3 - p1));
+    pp[u].second = t++;
 }
 
-int main() {
-    fastio(0);
+bool in_stree(int u, int v){
+    return (pp[u].first <= pp[v].first) && (pp[u].second >= pp[v].second);
+}
 
-    Point<long double> points[3];
-    for(int i = 0; i < 3; i++){
-        long double x, y; cin >> x >> y;
-        points[i] += {x, y};
+int lca(int u, int v){
+    if(in_stree(u, v))
+        return u;
+    if(in_stree(v, u))
+        return v;
+    for(int i = LG-1; i >= 0; i--){
+        if(!in_stree(jumps[u][i], v))
+            u = jumps[u][i];
+    }
+    return jumps[u][0];
+}
+
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
+
+    int n, q; cin >> n >> q;
+
+    tree[1].push_back({1, 0});
+    FOR(i, 1, n){
+        int u, v, w; cin >> u >> v >> w;
+        tree[u].push_back({v, w});
+        tree[v].push_back({u, w});
     }
 
-    cout << fixed << setprecision(1);
+    dfs(1, 0, 1);
 
-    cout << triangle_area(points[0], points[1], points[2]);
-    
+    while(q--){
+        int u, v; cin >> u >> v;
+        int temp = lca(u, v);
+        cout << prefsum[u]-prefsum[temp]+prefsum[v]-prefsum[temp] << '\n';
+    }
+
     return 0;
 }
